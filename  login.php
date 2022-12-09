@@ -8,6 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ログインページ</title>
 </head>
+
+<link rel="stylesheet" href="./css/php_chanpionship.css">
 <body>
   <form action="" method="">
     <h1>ログイン</h1>
