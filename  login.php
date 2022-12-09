@@ -15,6 +15,7 @@
     <h1>ログイン</h1>
     <p>ID: <input type="text" name="login_id"></p>
     <p>PASS: <input type="password" name="login_password"></p>
+    <p><input type="submit" value="ログイン"></p>
   </form>
   
 </body>
