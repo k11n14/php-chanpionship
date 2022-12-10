@@ -2,8 +2,9 @@
 session_start();
 $session_id =session_id();
 
-echo ('<bre>');
-echo $session_id
+echo('<pre>');
+echo $session_id;
+echo('</pre>');
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -16,7 +17,7 @@ echo $session_id
 
 <link rel="stylesheet" href="./css/php_chanpionship.css">
 <body>
-  <form action="" method="">
+  <form action="login_server.php" method="POST">
     <h1>ログイン</h1>
     <p>ID: <input type="text" name="login_id"></p>
     <p>PASS: <input type="password" name="login_password"></p>

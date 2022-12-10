@@ -18,4 +18,8 @@ echo json_encode(['db error'=>'{$e->getMessage()}']);
 exit();
 }
 }
+
+echo('<pre>');
+
+echo('</pre>');
 ?>
