@@ -1,4 +1,9 @@
 <?php
+session_start();
+$session_id =session_id();
+
+echo ('<bre>');
+echo $session_id
 ?>
 <!DOCTYPE html>
 <html lang="ja">
