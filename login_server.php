@@ -15,7 +15,7 @@ if(
   ){
   $alert='<script>alert("ログインできません")</script>';
     echo $alert;
-    echo '<script>location.href = "login.php"</script>';
+    // echo '<script>location.href = "login.php"</script>';
     //  login.php
 }
 

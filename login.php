@@ -23,6 +23,6 @@ echo('</pre>');
     <p>PASS: <input type="password" name="login_password"></p>
     <p><input type="submit" value="ログイン"></p>
   </form>
-  
+  <a href=""></a>
 </body>
 </html>
