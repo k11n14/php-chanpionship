@@ -2,7 +2,7 @@
 
 function connect_db()
 {
-$dbn ='mysql:dbname=データベース名;charset=utf8mb4;port=3306;
+$dbn ='mysql:dbname=php_chanpionship;charset=utf8mb4;port=3306;
 host=localhost';
 $user = 'root';
 $pwd = '';
