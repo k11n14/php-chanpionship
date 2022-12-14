@@ -48,8 +48,9 @@ echo('</pre>');
 
 
 if (!$val) {
-  echo "<p>ログイン情報に誤りがあります</p>";
-  echo "<a href=todo_login.php>ログイン</a>";
+    $alert = "<script>alert('ログインに失敗しました。')</script>";
+    echo $alert;
+    echo '<script>location.href = "login.php" </script>';
   exit();
 } 
 else {
