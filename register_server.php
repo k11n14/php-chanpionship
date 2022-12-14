@@ -64,4 +64,6 @@ try {
   exit();
 }
 
+header("Location:login.php");
+exit();
 ?>
