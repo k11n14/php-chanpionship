@@ -42,10 +42,12 @@ try {
 
 $val = $stmt->fetch(PDO::FETCH_ASSOC);
 
-echo('<pre>');
-var_dump($val );
-echo('</pre>');
-
+// echo('<pre>');
+// echo ("val");
+// echo('<br>');
+// var_dump($val );
+// echo('</pre>');
+// exit();
 
 if (!$val) {
     $alert = "<script>alert('ログインに失敗しました。')</script>";

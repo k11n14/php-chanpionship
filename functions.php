@@ -11,8 +11,10 @@
 // echo('<br>');
 // echo ();
 
+// echo 'SQLok';
+
 // 呼び出し用
-// include("functions.php");
+// include("functions.php");$pdo =connect_db();
 
 function connect_db()
 {
