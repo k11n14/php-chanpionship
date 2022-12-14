@@ -1,7 +1,17 @@
 <?php
 include("functions.php");
 session_start();
-check_session_id()
+
+echo('<pre>');
+var_dump ($_SESSION);
+echo('</pre>');
+
+check_session_id();
+
+echo('<pre>');
+var_dump ($_SESSION);
+echo('</pre>');
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
