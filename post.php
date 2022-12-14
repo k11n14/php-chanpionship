@@ -7,7 +7,7 @@
   <title>投稿画面</title>
 </head>
 <body>
-  <form action="post_sever.php" method="POST">
+  <form action="post_server.php" method="POST">
   <fieldset>
     <legend>投稿</legend>
     <div>
