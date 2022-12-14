@@ -8,10 +8,19 @@
 </head>
 <body>
   <form action="login_server.php" method="POST">
-    <h1>ログイン</h1>
-    <p>ID: <input type="text" name="login_id"></p>
-    <p>PASS: <input type="password" name="login_password"></p>
-    <p><input type="submit" value="ログイン"></p>
+    <fieldset>
+    <legend>ログイン</legend>
+    <div>
+      User Id: <input type="text" name="login_id">
+    </div>
+    <div>
+      Pass Word: <input type="password" name="login_password">
+    </div>
+    <div>
+      <input type="submit" value="ログイン">
+    </div>
+    <a href="register.php">登録はこちら</a>
+    </fieldset>
   </form>
   
 </body>
