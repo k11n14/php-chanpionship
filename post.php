@@ -11,7 +11,7 @@
   <fieldset>
     <legend>投稿</legend>
     <div>
-      一言: <input type="text" name="A_word">
+      一言: <input type="text" name="Post">
     </div>
   </fieldset>
 </form>
