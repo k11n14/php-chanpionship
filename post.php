@@ -28,10 +28,13 @@ echo ('</pre>');
     <fieldset>
       <legend>投稿</legend>
       <div>
-        一言: <input type="text" name="Post">
+        一言: <input type="text" id="post" name="Post">
       </div>
     </fieldset>
   </form>
+  <script>
+    document.getElementById('post').focus();
+  </script>
 </body>
 
 </html>

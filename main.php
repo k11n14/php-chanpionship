@@ -13,6 +13,13 @@ include("main_server.php");
 </head>
 
 <body>
+  <div class="Test">確認テスト</div>
+  <div class="sticky">
+    <a href="post.php">かきこむ（Enter押してね。）</a>
+    <br>
+    <a href="logout.php">ログアウト</a>
+  </div>
+  <div class="output"><?= $output ?></div>
   <script>
     window.document.onkeydown = function(event) {
       if (event.key === 'Enter') {
@@ -21,13 +28,6 @@ include("main_server.php");
       }
     }
   </script>
-  <div class="Test">確認テスト</div>
-  <div class="sticky">
-    <a href="post.php">かきこむ</a>
-    <br>
-    <a href="logout.php">ログアウト</a>
-  </div>
-  <div class="output"><?= $output ?></div>
 </body>
 
 </html>
