@@ -7,15 +7,15 @@
 //   ["register_user_name"]=>
 //   string(2) "DD"
 // }
-echo('<pre>');
-var_dump ($_POST);
-echo('</pre>');
+echo ('<pre>');
+var_dump($_POST);
+echo ('</pre>');
 $userid = $_POST["register_id"];
 $userpassword = $_POST["register_password"];
 $username = $_POST["register_user_name"];
 
 include("functions.php");
-$pdo =connect_db();
+$pdo = connect_db();
 
 $sql = 'SELECT COUNT(*) FROM Users_table WHERE users_login_id=:userid||users_name=:username';
 $stmt = $pdo->prepare($sql);
@@ -42,9 +42,9 @@ try {
 // echo ($T);
 
 if ($stmt->fetchColumn() > 0) {
-    $alert = "<script>alert('既に登録されています。')</script>";
-    echo $alert;
-    echo '<script>location.href = "register.php" </script>';
+  $alert = "<script>alert('既に登録されています。')</script>";
+  echo $alert;
+  echo '<script>location.href = "register.php" </script>';
   exit();
 }
 
@@ -55,7 +55,8 @@ VALUES
 
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':id', $userid, PDO::PARAM_STR);
-$stmt->bindValue(':password', $userpassword, PDO::PARAM_STR);$stmt->bindValue(':name', $username, PDO::PARAM_STR);
+$stmt->bindValue(':password', $userpassword, PDO::PARAM_STR);
+$stmt->bindValue(':name', $username, PDO::PARAM_STR);
 
 try {
   $status = $stmt->execute();
@@ -66,4 +67,3 @@ try {
 
 header("Location:login.php");
 exit();
-?>

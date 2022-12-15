@@ -17,7 +17,7 @@
       <div>
         Pass Word: <input type="text" name="register_password">
       </div>
-       <div>
+      <div>
         User Name: <input type="text" name="register_user_name">
       </div>
       <div>

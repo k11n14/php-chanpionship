@@ -1,24 +1,24 @@
 <?php
-echo('<pre>');
-var_dump ($_POST);
-echo('</pre>');
+echo ('<pre>');
+var_dump($_POST);
+echo ('</pre>');
 
-$login_id=$_POST["login_id"];
-$login_password=$_POST["login_password"];
+$login_id = $_POST["login_id"];
+$login_password = $_POST["login_password"];
 
 
-echo('<pre>');
+echo ('<pre>');
 echo ($login_id);
-echo('<br>');
+echo ('<br>');
 echo ($login_password);
-echo('</pre>');
+echo ('</pre>');
 
 
 
 
 
 include('functions.php');
-$pdo =connect_db();
+$pdo = connect_db();
 
 $sql = 'SELECT * FROM Users_table
 WHERE users_login_id =:id 
@@ -47,23 +47,20 @@ $val = $stmt->fetch(PDO::FETCH_ASSOC);
 // exit();
 
 if (!$val) {
-    $alert = "<script>alert('ログインに失敗しました。')</script>";
-    echo $alert;
-    echo '<script>location.href = "login.php" </script>';
+  $alert = "<script>alert('ログインに失敗しました。')</script>";
+  echo $alert;
+  echo '<script>location.href = "login.php" </script>';
   exit();
-} 
-else {
+} else {
   $_SESSION = array();
   session_start();
   $_SESSION['session_id'] = session_id();
   $_SESSION['user_id'] = $val["users_id"];
   $_SESSION['user_login_id'] = $val["users_login_id"];
   $_SESSION['user_name'] = $val["users_name"];
-  echo('<pre>');
-  var_dump ($_SESSION);
-  echo('</pre>');
+  echo ('<pre>');
+  var_dump($_SESSION);
+  echo ('</pre>');
   header("Location:main.php");
   exit();
 }
-
-?>

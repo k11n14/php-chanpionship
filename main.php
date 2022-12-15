@@ -3,6 +3,7 @@ include("main_server.php");
 ?>
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,9 +11,11 @@ include("main_server.php");
   <title>メインページ</title>
   <link rel="stylesheet" href="./css/php_Championship.css">
 </head>
+
 <body>
   <a href="post.php">かきこむ</a>
   <a href="logout.php">ログアウト</a>
   <div class="output"><?= $output ?></div>
 </body>
+
 </html>

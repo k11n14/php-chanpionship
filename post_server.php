@@ -38,7 +38,7 @@ try {
   echo 'SQLok';
 } 
 catch (PDOException $e)
- {
+{
   echo json_encode(["sql error" => "{$e->getMessage()}"]);
   exit();
 }
