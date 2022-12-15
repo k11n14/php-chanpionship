@@ -46,3 +46,7 @@ function check_session_id()
     $_SESSION["session_id"] = session_id();
   }
 }
+
+// メモ帳
+// SELECT カラム名基準にしたいもの？, カウントする(like_created_atの数を)) FROM テーブル名 GROUP BY users_id別に分けた;
+// SELECT users_id, COUNT(like_created_at) FROM Like_table GROUP BY users_id;

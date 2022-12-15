@@ -17,7 +17,35 @@ $pdo = connect_db();
 
 $output = "";
 
-$sql = 'SELECT * FROM Post_table ORDER BY post_created_at DESC';
+// $sql = 'SELECT * 
+// FROM Post_table 
+// ORDER BY post_created_at DESC';
+
+// $sql = 'SELECT * 
+// FROM Post_table 
+// LEFT OUTER JOIN (
+// SELECT post_id as add_id, 
+// COUNT(post_id) 
+// AS like_count 
+// FROM Like_table 
+// GROUP BY post_id) 
+// AS result_table 
+// ON Post_table.post_id = result_table.post_id';
+
+// 
+$sql = 'SELECT * 
+FROM Post_table 
+LEFT OUTER JOIN ( 
+SELECT post_id 
+AS add_id, 
+COUNT(post_id) 
+AS like_count 
+FROM Like_table 
+GROUP BY post_id) 
+AS result_table 
+ON Post_table.post_id = result_table.add_id';
+
+
 $stmt = $pdo->prepare($sql);
 
 try {
@@ -31,7 +59,7 @@ try {
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 echo ('<pre>');
-var_dump($result[0]);
+var_dump($result);
 echo ('</pre>');
 
 foreach ($result as $record) {
@@ -41,6 +69,7 @@ foreach ($result as $record) {
   <div id='output' class='output_No{$record["post_id"]}'>
   <div>{$record["post"]}</div>
   <div><a href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>Good</a></div>
+  <div>{$record["like_count"]}</div>
   <div>{$record["post_created_at"]}</div>
   </div>
   </fieldset>
