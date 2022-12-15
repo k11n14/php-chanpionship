@@ -13,10 +13,6 @@ echo ('<br>');
 echo ($login_password);
 echo ('</pre>');
 
-
-
-
-
 include('functions.php');
 $pdo = connect_db();
 
