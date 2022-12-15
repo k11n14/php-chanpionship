@@ -12,6 +12,7 @@ include("main_server.php");
 </head>
 <body>
   <a href="post.php">かきこむ</a>
+  <a href="logout.php">ログアウト</a>
   <div class="output"><?= $output ?></div>
 </body>
 </html>
