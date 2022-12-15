@@ -13,6 +13,14 @@ include("main_server.php");
 </head>
 
 <body>
+  <script>
+    window.document.onkeydown = function(event) {
+      if (event.key === 'Enter') {
+        // alert("やった！！！");
+        window.location.href = "post.php"
+      }
+    }
+  </script>
   <div class="Test">確認テスト</div>
   <div class="sticky">
     <a href="post.php">かきこむ</a>
