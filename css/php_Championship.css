@@ -10,6 +10,10 @@
 	flex-direction: column;
 }
 
+a{
+  color:red;
+  text-decoration: none;
+}
 /* ID指定 */
 
 .sticky {
