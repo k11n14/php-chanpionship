@@ -1,7 +1,16 @@
 <?php
 include("functions.php");
 session_start();
+echo('<pre>');
+var_dump ($_SESSION);
+echo('</pre>');
+
 check_session_id();
+
+echo('<pre>');
+var_dump ($_SESSION);
+echo('</pre>');
+
 $pdo = connect_db();
 
 $sql ='SELECT * FROM Post_table';
@@ -30,6 +39,7 @@ echo('</pre>');
   <title>メインページ</title>
 </head>
 <body>
+
   <a href="post.php">かきこむ</a>
   
 </body>
