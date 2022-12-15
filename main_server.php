@@ -11,6 +11,7 @@ check_session_id();
 echo('<pre>');
 var_dump ($_SESSION);
 echo('</pre>');
+$user_id=$_SESSION["user_id"];
 
 $pdo = connect_db();
 
@@ -39,7 +40,7 @@ foreach ($result as $record) {
   <legend>{$record ["post_user_name"]}</legend>
  <div id='output' class='output_No{$record["post_id"]}'>
  <div>{$record ["post"]}</div>
- <div><a href='like_server.php?user_id={$user_id}&todo_id={$record["id"]}'>like</a></div>
+ <div><a href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>Good</a></div>
  <div>{$record ["post_created_at"]}</div>
  </div>
   </fieldset>

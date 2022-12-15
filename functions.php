@@ -48,5 +48,3 @@ function check_session_id()
     $_SESSION["session_id"] = session_id();
   }
 }
-
-?>
