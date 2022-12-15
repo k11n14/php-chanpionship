@@ -29,9 +29,9 @@ try {
 
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// echo('<pre>');
-// var_dump ($result);
-// echo('</pre>');
+echo('<pre>');
+var_dump ($result[0]);
+echo('</pre>');
 
 foreach ($result as $record) {
  $output .= "
@@ -39,6 +39,7 @@ foreach ($result as $record) {
   <legend>{$record ["post_user_name"]}</legend>
  <div id='output' class='output_No{$record["post_id"]}'>
  <div>{$record ["post"]}</div>
+ <div><a href='like_server.php?user_id={$user_id}&todo_id={$record["id"]}'>like</a></div>
  <div>{$record ["post_created_at"]}</div>
  </div>
   </fieldset>

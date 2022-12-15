@@ -56,7 +56,8 @@ else {
   $_SESSION = array();
   session_start();
   $_SESSION['session_id'] = session_id();
-  $_SESSION['user_id'] = $val["users_login_id"];
+  $_SESSION['user_id'] = $val["users_id"];
+  $_SESSION['user_login_id'] = $val["users_login_id"];
   $_SESSION['user_name'] = $val["users_name"];
   echo('<pre>');
   var_dump ($_SESSION);
