@@ -10,6 +10,11 @@ echo ($Post);
 
 session_start();
 
+echo('<pre>');
+var_dump ($_SESSION);
+echo('</pre>');
+
+$username=$_SESSION["user_name"];
 
 include("functions.php");
 
@@ -18,13 +23,13 @@ $pdo =connect_db();
 $sql = 'INSERT INTO Post_table 
 (post_id,post_user_name,post, post_created_at) 
 VALUES 
-(NULL,"hogeさん",:post, now())';
+(NULL,:username,:post, now())';
 
 $stmt = $pdo->prepare($sql);
 
-$stmt->bindValue(
-  ':post', $Post, PDO::PARAM_STR
-);
+$stmt->bindValue(':post', $Post, PDO::PARAM_STR);
+$stmt->bindValue(':username', $username, PDO::PARAM_STR);
+// exit();
 // $stmt->bindValue(
 //   ':username', $username, PDO::PARAM_STR
 // );

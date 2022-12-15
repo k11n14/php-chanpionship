@@ -1,0 +1,11 @@
+/* CLASS指定 */
+.output{
+display: flex;
+justify-content: center;	
+align-items: center;
+flex-direction: column;
+}
+
+/* ID指定 */
+#output{
+}
