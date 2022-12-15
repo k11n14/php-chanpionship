@@ -6,17 +6,14 @@ echo('</pre>');
 $login_id=$_POST["login_id"];
 $login_password=$_POST["login_password"];
 
+
 echo('<pre>');
 echo ($login_id);
 echo('<br>');
 echo ($login_password);
 echo('</pre>');
 
-session_start();
 
-echo('<pre>');
-var_dump ($_SESSION);
-echo('</pre>');
 
 
 
@@ -57,13 +54,14 @@ if (!$val) {
 } 
 else {
   $_SESSION = array();
+  session_start();
   $_SESSION['session_id'] = session_id();
   $_SESSION['user_id'] = $val["users_login_id"];
   $_SESSION['user_name'] = $val["users_name"];
   echo('<pre>');
   var_dump ($_SESSION);
   echo('</pre>');
-  header("Location:post.php");
+  header("Location:main.php");
   exit();
 }
 

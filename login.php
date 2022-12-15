@@ -1,3 +1,20 @@
+<?php
+session_start();
+// $session_id = session_id();
+
+// echo $session_id;
+// // $_SESSION['session_id'] = session_id();
+// // session_start();
+// // session_id();
+// // $session_id = session_id();
+
+// echo ('<pre>');
+// var_dump($_SESSION);
+// echo ('</pre>');
+echo('<pre>');
+var_dump ($_SESSION);
+echo('</pre>');
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>

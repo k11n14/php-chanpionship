@@ -1,5 +1,5 @@
 <?php
-// 確認用
+// // 確認用
 // echo('<pre>');
 // var_dump ();
 // echo('</pre>');
@@ -13,8 +13,10 @@
 
 // echo 'SQLok';
 
-// 呼び出し用
+// // 呼び出し用
 // include("functions.php");$pdo =connect_db();
+
+// check_session_id();
 
 function connect_db()
 {

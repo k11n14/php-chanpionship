@@ -8,6 +8,9 @@ $Post=$_POST["Post"];
 echo('<br>');
 echo ($Post);
 
+session_start();
+
+
 include("functions.php");
 
 $pdo =connect_db();
@@ -35,5 +38,5 @@ catch (PDOException $e)
   exit();
 }
 
-				
+  header("Location:main.php");	
 ?>
