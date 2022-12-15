@@ -63,6 +63,6 @@ echo 'INSERT';
     exit();
   }
   
-// header("Location:main.php");
+header("Location:main.php");
 exit();
 ?>

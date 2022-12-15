@@ -8,9 +8,9 @@ session_start();
 
 check_session_id();
 
-echo ('<pre>');
-var_dump($_SESSION);
-echo ('</pre>');
+// echo ('<pre>');
+// var_dump($_SESSION);
+// echo ('</pre>');
 $user_id = $_SESSION["user_id"];
 
 $pdo = connect_db();
@@ -43,7 +43,9 @@ AS like_count
 FROM Like_table 
 GROUP BY post_id) 
 AS result_table 
-ON Post_table.post_id = result_table.add_id';
+ON Post_table.post_id = result_table.add_id
+ORDER BY post_created_at DESC
+';
 
 
 $stmt = $pdo->prepare($sql);
@@ -51,6 +53,7 @@ $stmt = $pdo->prepare($sql);
 try {
   $status = $stmt->execute();
   echo 'SQLok';
+  echo '<br>';
 } catch (PDOException $e) {
   echo json_encode(["sql error" => "{$e->getMessage()}"]);
   exit();
@@ -70,6 +73,7 @@ foreach ($result as $record) {
   <div>{$record["post"]}</div>
   <div><a href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>Good</a></div>
   <div>{$record["like_count"]}</div>
+  <div><a href='delete.php?post_id={$record["post_id"]}'>削除</a></div>
   <div>{$record["post_created_at"]}</div>
   </div>
   </fieldset>
