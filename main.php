@@ -13,8 +13,12 @@ include("main_server.php");
 </head>
 
 <body>
-  <a href="post.php">かきこむ</a>
-  <a href="logout.php">ログアウト</a>
+  <div class="Test">確認テスト</div>
+  <div class="sticky">
+    <a href="post.php">かきこむ</a>
+    <br>
+    <a href="logout.php">ログアウト</a>
+  </div>
   <div class="output"><?= $output ?></div>
 </body>
 

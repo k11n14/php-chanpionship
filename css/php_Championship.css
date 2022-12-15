@@ -1,11 +1,22 @@
+.Test {
+	color: blue;
+	background-color: red;
+}
 /* CLASS指定 */
-.output{
-display: flex;
-justify-content: center;	
-align-items: center;
-flex-direction: column;
+.output {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
 
 /* ID指定 */
-#output{
+
+.sticky {
+	/* color: red;
+	background-color: blue; */
+  position: fixed;
+  bottom: 10px; 
+  right: 10px;
+  padding: 6px 40px;
 }
