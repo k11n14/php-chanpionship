@@ -1,23 +1,133 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <script>
-    // キャンパス要素を取得
-const canvas = document.getElementById( "target" ) ;
+	<head>
+		<meta charset="UTF-8" />
+		<title>テスト</title>
+	</head>
+	<body>
 
-// キャンパスの描画領域の横幅を500pxに変更する
-// canvas.width = 500 ;
 
-// キャンパスの描画領域の横幅を取得
-const width = canvas.width ;
 
-console.log(width);
-  </script>
-</body>
+
+		<button id="btn_1">btn</button>
+		<script>
+			var num = 0;
+			console.log(num);
+			function adding() {
+				var elm_add = document.createElement("button");
+				console.log(elm_add);
+				elm_add.id = "hoge" + num;
+				console.log(elm_add.id);
+				elm_add.textContent = "btn added";
+				var objBody = document.getElementsByTagName("body").item(0);
+				objBody.appendChild(elm_add);
+				elm_add.addEventListener("click", warnings, false);
+				num++;
+			}
+
+			var elm = document.getElementById("btn_1");
+			elm.addEventListener("click", adding, false);
+			// elm.addEventListener("click", () => {処理});
+
+			// elm.addEventListener("click", function() {処理}, false);
+
+			// elm.addEventListener("click", sampleEvent, false);
+			// function sampleEvent(){処理}
+
+			function warnings() {
+				alert("it works! congraturations!!");
+			}
+		</script>
+
+
+
+
+
+
+
+
+		<div id="text-msg">HTMLを含まない文字列</div>
+        <div id="ABC"></div>
+		<button id="btn_2">btn222</button>
+		<script>
+			// function add_div(){
+
+			// }
+			const btn_2 = document.getElementById("btn_2");
+			btn_2.addEventListener(
+				"click",
+				function () {
+					const div_add = document.createElement("div");
+                    const get_ABC_div = document.getElementById("ABC");
+
+					div_add.id = "hoge"; // + num;
+
+					// num++;
+
+					div_add.textContent = "DIVを追加しました。";
+
+					get_ABC_div.appendChild(div_add);
+
+					// window.addEventListener("load", textMsg, false);
+					// function textMsg()
+				},
+				false
+			);
+			// window.addEventListener("load", textMsg, false);
+
+
+			function textMsg() {
+				const textMsg = document.getElementById("hoge");
+				console.log(textMsg.textContent);
+			}
+			// 要素への参照を取得
+			var textMsg = document.getElementById("text-msg");
+			// コンソールにテキストを表示
+			console.log(textMsg.textContent);
+		</script>
+
+
+
+
+
+		<div id="change_txt" contenteditable="true">
+			編集可能な要素です。何か入力してください。
+		</div>
+		<p id="result"></p>
+		<button id="stop_btn" onclick="this.disabled = true;">
+			監視をストップする
+		</button>
+		<script>
+			const result = document.querySelector("#result");
+			const stopBtn = document.querySelector("#stop_btn");
+
+			//オプション
+			const options = {
+				// childList: true, //直接の子の変更を監視
+				characterData: true, //文字の変化を監視
+				// characterDataOldValue: true,　//属性の変化前を記録
+				// attributes: true,　 //属性の変化を監視
+				subtree: true, //全ての子要素を監視
+			};
+			//コールバック関数
+			function callback(mutationsList, observer) {
+				for (const mutation of mutationsList) {
+					// result.textContent = mutation.target.textContent;
+                    alert("ok");
+				}
+			}
+			//ターゲット要素をDOMで取得
+			const target = document.querySelector("#ABC");
+			//インスタンス化
+			const obs = new MutationObserver(callback);
+			//ターゲット要素の監視を開始
+			obs.observe(target, options);
+
+			stopBtn.addEventListener("click", function () {
+				//ターゲット要素の監視を停止
+				obs.disconnect();
+				alert("ターゲットの監視を停止しました。");
+			});
+		</script>
+	</body>
 </html>
