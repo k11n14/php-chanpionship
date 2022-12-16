@@ -121,30 +121,53 @@
 		<canvas id="cv1" class="cv_1"></canvas>
 		<button id="canvas_button">A</button>
 		<script>
-
-			function canvas_draw() {
-				const canvas = document.getElementById("cv1");
+			// 完成形
+			// function canvas_draw() {
+			// 	const canvas = document.getElementById("cv1");
+			// 	canvas.width = 120;
+			// 	canvas.height = 120;
+			// 	const context = canvas.getContext("2d");
+			// 	context.arc(
+			// 		canvas.width / 2,
+			// 		canvas.height / 2,
+			// 		10,
+			// 		(0 * Math.PI) / 180,
+			// 		(360 * Math.PI) / 180,
+			// 		false
+			// 	);
+			// 	context.fillStyle = "red";
+			// 	context.fill();
+			// 	alert("draw canvas");
+			// }
+			
+	
+			function canvas_draw(X,Y) {
+				const canvas = document.getElementById(X);
 				canvas.width = 120;
 				canvas.height = 120;
 				const context = canvas.getContext("2d");
 				context.arc(
 					canvas.width / 2,
 					canvas.height / 2,
-					10,
+					Y,
 					(0 * Math.PI) / 180,
 					(360 * Math.PI) / 180,
 					false
 				);
 				context.fillStyle = "red";
 				context.fill();
-				alert('draw canvas')
+				alert("draw canvas");
 			}
 
 			const draw = document.getElementById("canvas_button");
+			// 完成形
+			// draw.addEventListener("click", canvas_draw, false);
+
+			draw.addEventListener("click", function(){canvas_draw("cv1",50)}, false);
+			// テスト
 			// draw.addEventListener("click", function(){alert('OK')}, false);
-			draw.addEventListener("click", canvas_draw, false);
+			// 失敗例
 			// draw.addEventListener("on", canvas_draw(), false);
-	
 		</script>
 	</body>
 </html>
