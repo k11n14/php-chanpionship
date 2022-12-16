@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>きゃんばす</title>
+	</head>
+	<body>
+		<canvas id="sample1">
+			図形を表示するには、canvasタグをサポートしたブラウザが必要です。
+		</canvas>
+		<script>
+			//描画コンテキストの取得
+			const canvas = document.getElementById("sample1");
+			if (canvas.getContext) {
+				const context = canvas.getContext("2d");
+				//ここに四角形・円などの図形を描くコードを記述する
+				//左から20上から40の位置に、幅50高さ100の四角形を描く
+				context.fillRect(20, 40, 1, 1);
+				//色を指定する
+				context.strokeStyle = "rgb(00,00,255)"; //枠線の色は青
+				context.fillStyle = "rgb(255,00,00)"; //塗りつぶしの色は赤
+			}
+		</script>
+	</body>
+</html>
