@@ -74,7 +74,7 @@ foreach ($result as $record) {
   <div>{$record["post"]}</div>
   <div><a href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>Good</a></div>
   <div>{$record["like_count"]}</div>
-  <div><a href='delete.php?post_id={$record["post_id"]}'>削除</a></div>
+  <div><a href='delete_server.php?post_id={$record["post_id"]}'>削除</a></div>
   <div>{$record["post_created_at"]}</div>
   </div>
   </div>

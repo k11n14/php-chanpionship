@@ -17,17 +17,10 @@ include("main_server.php");
   <div class="sticky">
     <a href="post.php">かきこむ（Enter押してね。）</a>
     <br>
-    <a href="logout.php">ログアウト</a>
+    <a href="logout_server.php">ログアウト</a>
   </div>
   <div class="output"><?= $output ?></div>
-  <script>
-    window.document.onkeydown = function(event) {
-      if (event.key === 'Enter') {
-        // alert("やった！！！");
-        window.location.href = "post.php"
-      }
-    }
-  </script>
+  <script src="./JS/main.js"></script>
 </body>
 
 </html>
