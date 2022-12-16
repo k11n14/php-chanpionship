@@ -69,12 +69,17 @@ foreach ($result as $record) {
   $output .= "
   <fieldset>
   <legend>{$record["post_user_name"]}</legend>
+  <div class='display_post'>
   <div id='output' class='output_No{$record["post_id"]}'>
   <div>{$record["post"]}</div>
   <div><a href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>Good</a></div>
   <div>{$record["like_count"]}</div>
   <div><a href='delete.php?post_id={$record["post_id"]}'>削除</a></div>
   <div>{$record["post_created_at"]}</div>
+  </div>
+  </div>
+  <div class='display_canvas'>
+  <canvas id='post_canvas'></canvas>
   </div>
   </fieldset>
 ";
