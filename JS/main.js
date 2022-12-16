@@ -21,7 +21,8 @@ console.log(like_count.textContent);
 
 
 
-const canvas = document.getElementById("Post_canvas");
+// const canvas = document.getElementById("Post_canvas");
+const canvas = document.getElementsByClassName("post_canvas");
 
 canvas.width = 120;
 canvas.height = 120;

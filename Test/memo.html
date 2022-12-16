@@ -5,10 +5,7 @@
 		<title>テスト</title>
 	</head>
 	<body>
-
-
-
-
+		<h1>テスト１</h1>
 		<button id="btn_1">btn</button>
 		<script>
 			var num = 0;
@@ -39,15 +36,9 @@
 			}
 		</script>
 
-
-
-
-
-
-
-
+		<h1>テスト２</h1>
 		<div id="text-msg">HTMLを含まない文字列</div>
-        <div id="ABC"></div>
+		<div id="ABC"></div>
 		<button id="btn_2">btn222</button>
 		<script>
 			// function add_div(){
@@ -58,7 +49,7 @@
 				"click",
 				function () {
 					const div_add = document.createElement("div");
-                    const get_ABC_div = document.getElementById("ABC");
+					const get_ABC_div = document.getElementById("ABC");
 
 					div_add.id = "hoge"; // + num;
 
@@ -75,7 +66,6 @@
 			);
 			// window.addEventListener("load", textMsg, false);
 
-
 			function textMsg() {
 				const textMsg = document.getElementById("hoge");
 				console.log(textMsg.textContent);
@@ -86,10 +76,7 @@
 			console.log(textMsg.textContent);
 		</script>
 
-
-
-
-
+		<h1>テスト３</h1>
 		<div id="change_txt" contenteditable="true">
 			編集可能な要素です。何か入力してください。
 		</div>
@@ -113,7 +100,7 @@
 			function callback(mutationsList, observer) {
 				for (const mutation of mutationsList) {
 					// result.textContent = mutation.target.textContent;
-                    alert("ok");
+					alert("ok");
 				}
 			}
 			//ターゲット要素をDOMで取得
@@ -128,6 +115,36 @@
 				obs.disconnect();
 				alert("ターゲットの監視を停止しました。");
 			});
+		</script>
+
+		<h1 id="test4">テスト４</h1>
+		<canvas id="cv1" class="cv_1"></canvas>
+		<button id="canvas_button">A</button>
+		<script>
+
+			function canvas_draw() {
+				const canvas = document.getElementById("cv1");
+				canvas.width = 120;
+				canvas.height = 120;
+				const context = canvas.getContext("2d");
+				context.arc(
+					canvas.width / 2,
+					canvas.height / 2,
+					10,
+					(0 * Math.PI) / 180,
+					(360 * Math.PI) / 180,
+					false
+				);
+				context.fillStyle = "red";
+				context.fill();
+				alert('draw canvas')
+			}
+
+			const draw = document.getElementById("canvas_button");
+			// draw.addEventListener("click", function(){alert('OK')}, false);
+			draw.addEventListener("click", canvas_draw, false);
+			// draw.addEventListener("on", canvas_draw(), false);
+	
 		</script>
 	</body>
 </html>
