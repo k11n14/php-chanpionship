@@ -21,7 +21,7 @@ include("main_server.php");
   </div>
   <div class="output"><?= $output ?></div>
   
-  <script src="./JS/php_Campionship.js"></script>
+  <script src="./JS/main_php.js"></script>
 </body>
 
 </html>

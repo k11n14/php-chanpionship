@@ -73,14 +73,38 @@ foreach ($result as $record) {
   <div id='output' class='output_No{$record["post_id"]}'>
   <div>{$record["post"]}</div>
   <div><a href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>Good</a></div>
-  <div id='Like_count' class='like_count'>{$record["like_count"]}</div>
+  <div id='Like_count_No{$record["post_id"]}' class='like_count'>{$record["like_count"]}</div>
   <div><a href='delete_server.php?post_id={$record["post_id"]}'>削除</a></div>
   <div>{$record["post_created_at"]}</div>
   </div>
   </div>
   <div class='display_canvas'>
-  <canvas id='Post_canvas' class='post_canvas'></canvas>
+  <canvas id='Post_canvas_No{$record["post_id"]}' class='post_canvas'></canvas>
   </div>
   </fieldset>
+  <script>
+  function canvas_draw() {
+	const canvas = document.getElementById('Post_canvas_No{$record["post_id"]}');
+	canvas.width = 120;
+	canvas.height = 120;
+	const context = canvas.getContext('2d');
+	context.arc(
+		canvas.width / 2,
+		canvas.height / 2,
+		{$record["like_count"]},
+		(0 * Math.PI) / 180,
+		(360 * Math.PI) / 180,
+		false
+	);
+	context.fillStyle = 'red';
+	context.fill();
+}
+canvas_draw()
+  </script>
 ";
 }
+
+// echo ('<pre>');
+// var_dump($output);
+// echo ('</pre>');
+
