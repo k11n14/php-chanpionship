@@ -79,28 +79,27 @@ foreach ($result as $record) {
   </div>
   </div>
   <div class='display_canvas'>
-  <canvas id='Post_canvas_No{$record["post_id"]}' class='post_canvas'></canvas>
+  <canvas id='Post_canvas_No{$record["post_id"]}' width='120' height='120'></canvas>
   </div>
   </fieldset>
+
   <script>
   function canvas_draw() {
 	const canvas = document.getElementById('Post_canvas_No{$record["post_id"]}');
-	canvas.width = 120;
-	canvas.height = 120;
 	const context = canvas.getContext('2d');
 	context.arc(
-		canvas.width / 2,
-		canvas.height / 2,
-		{$record["like_count"]},
-		(0 * Math.PI) / 180,
-		(360 * Math.PI) / 180,
-		false
+	canvas.width / 2,
+	canvas.height / 2,
+  {$record["like_count"]},
+	(0 * Math.PI) / 180,
+  (360 * Math.PI) / 180,
+	false
 	);
 	context.fillStyle = 'red';
 	context.fill();
 }
 canvas_draw()
-  </script>
+</script>
 ";
 }
 
