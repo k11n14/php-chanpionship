@@ -53,7 +53,12 @@ include("main_server.php");
 
             let todos = [];
             response.data.forEach(todo => {
-              todos.push(`<tr><td>${todo.post_user_name}</td><td>${todo.post}</td><tr>`)
+              todos.push(`
+              <fieldset>
+              <div>${todo.post_user_name}</div>
+              <div>${todo.post}<div>
+              </fieldset>
+              `)
             });
 
             console.log(todos)
