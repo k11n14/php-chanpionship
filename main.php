@@ -13,6 +13,10 @@ include("main_server.php");
 </head>
 
 <body>
+  <div>
+    検索フォーム：<input type="text" id="search">
+  </div>
+  <div id="todo"></div>
   <div id="Test" class="test">確認テスト</div>
   <div class="sticky">
     <a href="post.php">かきこむ（Enter押してね。）</a>
@@ -20,8 +24,50 @@ include("main_server.php");
     <a href="logout_server.php">ログアウト</a>
   </div>
   <div class="output"><?= $output ?></div>
-  
+
   <script src="./JS/main_php.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    $("#search").on("keyup", function(e) {
+
+      console.log(e.target.value);
+      const searchWord = e.target.value;
+      const requestUrl = "ajax_get.php";
+      axios
+        .get(`${requestUrl}?searchword=${searchWord}`)
+
+        .then(function(response) {
+
+          console.log(response);
+          console.log(response.data);
+          console.log(response.data[0]);
+          console.log(response.data[0].post);
+          console.log(response.data[0].post_user_name);
+
+
+
+
+          let todos = [];
+          response.data.forEach(todo => {
+            todos.push(`<tr><td>${todo.post_user_name}</td><td>${todo.post}</td><tr>`)
+          });
+
+          console.log(todos)
+          $('#todo').html(todos)
+
+
+        })
+        .catch(function(error) {
+          // 省略
+        })
+        .finally(function() {
+          // 省略
+        });
+    });
+  </script>
+
+
 </body>
 
 </html>

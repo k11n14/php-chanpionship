@@ -25,9 +25,9 @@ function connect_db()
   $pwd = '';
 
   try {
-    echo ('<pre>');
-    echo ('DBok');
-    echo ('</pre>');
+    // echo ('<pre>');
+    // echo ('DBok');
+    // echo ('</pre>');
     return new PDO($dbn, $user, $pwd);
   } catch (PDOException $e) {
     echo json_encode(["db error" => "{$e->getMessage()}"]);
