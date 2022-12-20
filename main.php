@@ -34,36 +34,40 @@ include("main_server.php");
       console.log(e.target.value);
       const searchWord = e.target.value;
       const requestUrl = "ajax_get.php";
-      axios
-        .get(`${requestUrl}?searchword=${searchWord}`)
+      if (e.target.value == '') {
+        $("#todo").empty();
+      } else {
+        axios
+          .get(`${requestUrl}?searchword=${searchWord}`)
 
-        .then(function(response) {
+          .then(function(response) {
 
-          console.log(response);
-          console.log(response.data);
-          console.log(response.data[0]);
-          console.log(response.data[0].post);
-          console.log(response.data[0].post_user_name);
-
-
+            console.log(response);
+            console.log(response.data);
+            console.log(response.data[0]);
+            console.log(response.data[0].post);
+            console.log(response.data[0].post_user_name);
 
 
-          let todos = [];
-          response.data.forEach(todo => {
-            todos.push(`<tr><td>${todo.post_user_name}</td><td>${todo.post}</td><tr>`)
+
+
+            let todos = [];
+            response.data.forEach(todo => {
+              todos.push(`<tr><td>${todo.post_user_name}</td><td>${todo.post}</td><tr>`)
+            });
+
+            console.log(todos)
+            $('#todo').html(todos)
+
+
+          })
+          .catch(function(error) {
+            // 省略
+          })
+          .finally(function() {
+            // 省略
           });
-
-          console.log(todos)
-          $('#todo').html(todos)
-
-
-        })
-        .catch(function(error) {
-          // 省略
-        })
-        .finally(function() {
-          // 省略
-        });
+      }
     });
   </script>
 
