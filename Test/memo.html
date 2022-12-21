@@ -1,177 +1,34 @@
 <!DOCTYPE html>
 <html lang="ja">
-	<head>
-		<meta charset="UTF-8" />
-		<title>テスト</title>
-	</head>
-	<body>
-		<h1>テスト１</h1>
-		<button id="btn_1">btn</button>
-		<script>
-			var num = 0;
-			console.log(num);
-			
-			function adding() {
-				var elm_add = document.createElement("button");
-				console.log(elm_add);
-				elm_add.id = "hoge" + num;
-				console.log(elm_add.id);
-				elm_add.textContent = "btn added";
-				var objBody = document.getElementsByTagName("body").item(0);
-				objBody.appendChild(elm_add);
-				elm_add.addEventListener("click", warnings, false);
-				num++;
-			}
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+  <h1 id="sample">${title}</h1>
 
-			var elm = document.getElementById("btn_1");
-			elm.addEventListener("click", adding, false);
-			// elm.addEventListener("click", () => {処理});
+  <form>
+    <input id='$input' type='text' value='' placeholder='何か入力してね！' />
+  </form>
+ 
+  <script>window.addEventListener('load',function() {
+    const N ='ab'
+    // 入力した文字列を数値に変換
+    const n = stringToNumber(N);
+    // hsl 用に 0 ~ 360 に収める
+    const colorAngle = (n*n) % 360;
+    const element = document.getElementById("sample"); 
+		// var element = document.getElementById("sample"); 
+    // hsl の色相(Hue)部分に文字列から変換した数値を割り当てる
+    element.style.backgroundColor = `hsl(${colorAngle}, 80%, 64%)`;
+});
 
-			// elm.addEventListener("click", function() {処理}, false);
-
-			// elm.addEventListener("click", sampleEvent, false);
-			// function sampleEvent(){処理}
-
-			function warnings() {
-				alert("it works! congraturations!!");
-			}
-		</script>
-
-		<h1>テスト２</h1>
-		<div id="text-msg">HTMLを含まない文字列</div>
-		<div id="ABC"></div>
-		<button id="btn_2">btn222</button>
-		<script>
-			// function add_div(){
-
-			// }
-			const btn_2 = document.getElementById("btn_2");
-			btn_2.addEventListener(
-				"click",
-				function () {
-					const div_add = document.createElement("div");
-					const get_ABC_div = document.getElementById("ABC");
-
-					div_add.id = "hoge"; // + num;
-
-					// num++;
-
-					div_add.textContent = "DIVを追加しました。";
-
-					get_ABC_div.appendChild(div_add);
-
-					// window.addEventListener("load", textMsg, false);
-					// function textMsg()
-				},
-				false
-			);
-			// window.addEventListener("load", textMsg, false);
-
-			function textMsg() {
-				const textMsg = document.getElementById("hoge");
-				console.log(textMsg.textContent);
-			}
-			// 要素への参照を取得
-			var textMsg = document.getElementById("text-msg");
-			// コンソールにテキストを表示
-			console.log(textMsg.textContent);
-		</script>
-
-		<h1>テスト３</h1>
-		<div id="change_txt" contenteditable="true">
-			編集可能な要素です。何か入力してください。
-		</div>
-		<p id="result"></p>
-		<button id="stop_btn" onclick="this.disabled = true;">
-			監視をストップする
-		</button>
-		<script>
-			const result = document.querySelector("#result");
-			const stopBtn = document.querySelector("#stop_btn");
-
-			//オプション
-			const options = {
-				// childList: true, //直接の子の変更を監視
-				characterData: true, //文字の変化を監視
-				// characterDataOldValue: true,　//属性の変化前を記録
-				// attributes: true,　 //属性の変化を監視
-				subtree: true, //全ての子要素を監視
-			};
-			//コールバック関数
-			function callback(mutationsList, observer) {
-				for (const mutation of mutationsList) {
-					// result.textContent = mutation.target.textContent;
-					alert("ok");
-				}
-			}
-			//ターゲット要素をDOMで取得
-			const target = document.querySelector("#ABC");
-			//インスタンス化
-			const obs = new MutationObserver(callback);
-			//ターゲット要素の監視を開始
-			obs.observe(target, options);
-
-			stopBtn.addEventListener("click", function () {
-				//ターゲット要素の監視を停止
-				obs.disconnect();
-				alert("ターゲットの監視を停止しました。");
-			});
-		</script>
-
-		<h1 id="test4">テスト４</h1>
-		<canvas id="cv1" class="cv_1" width="120" height="120"></canvas>
-		<button id="canvas_button">A</button>
-		<script>
-			// 完成形
-			// function canvas_draw() {
-			// 	const canvas = document.getElementById("cv1");
-			// 	canvas.width = 120;
-			// 	canvas.height = 120;
-			// 	const context = canvas.getContext("2d");
-			// 	context.arc(
-			// 		canvas.width / 2,
-			// 		canvas.height / 2,
-			// 		10,
-			// 		(0 * Math.PI) / 180,
-			// 		(360 * Math.PI) / 180,
-			// 		false
-			// 	);
-			// 	context.fillStyle = "red";
-			// 	context.fill();
-			// 	alert("draw canvas");
-			// }
-
-			function canvas_draw(X, Y) {
-				const canvas = document.getElementById(X);
-				canvas.width = 120;
-				canvas.height = 120;
-				const context = canvas.getContext("2d");
-				context.arc(
-					canvas.width / 2,
-					canvas.height / 2,
-					Y,
-					(0 * Math.PI) / 180,
-					(360 * Math.PI) / 180,
-					false
-				);
-				context.fillStyle = "red";
-				context.fill();
-				alert("draw canvas");
-			}
-
-			canvas_draw("cv1", 50);
-
-			// 完
-			// const draw = document.getElementById("canvas_button");
-			// 完成形
-			// draw.addEventListener("click", canvas_draw, false);
-
-			// 完成形
-			// draw.addEventListener("click", function(){canvas_draw("cv1",50)}, false);
-			// テスト
-			// draw.addEventListener("click", function(){alert('OK')}, false);
-			// 失敗例
-			// draw.addEventListener("on", canvas_draw(), false);
-		</script>
-	</body>
+// 文字列を適当な数値に変換する
+const stringToNumber = (str) => {
+  return Array.from(str).map(ch => ch.charCodeAt(0)).reduce((a, b) => a+b);
+};
+</script>
+</body>
 </html>

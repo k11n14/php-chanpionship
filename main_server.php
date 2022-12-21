@@ -130,7 +130,7 @@ foreach ($result as $record) {
   foreach ($my_follow as $record3) {
     if ($record["users_id"] == $record3["followed"]) {
       $output .= "
-  <fieldset>
+  <fieldset id='F_No{$record["post_id"]}'>
   <legend>{$record["post_user_name"]}</legend>
   <div class='display_post'>
   <div id='output' class='output_No{$record["post_id"]}'>
@@ -144,11 +144,17 @@ foreach ($result as $record) {
       }
       if ($user_id !== $record["users_id"]) {
         if ($my_like_cnt < 1) {
-          $output .= "<div><a class='like' href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>確かに<span>☆</span>{$record["like_count"]}</a></div>";
+          $output .= "<div><a class='like' href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>確かに<span>☆</span>{$record["like_count"]}</a></div>
+          <div><a class='A_follow' href='follow_server.php?post_id={$record["users_id"]}'>フォロー解除</a></div>
+          ";
         } else {
-          $output .= "<div><a class='liked' href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>確かに<span>★</span>{$record["like_count"]}</a></div>";
+          $output .= "<div><a class='liked' href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>確かに<span>★</span>{$record["like_count"]}</a></div>
+          <div><a class='A_follow' href='follow_server.php?post_id={$record["users_id"]}'>フォロー解除</a></div>
+          ";
         }
+        
       }
+
       if ($user_name == $record["post_user_name"]) {
         $output .= "
   <div><a class='A_delete' href='delete_server.php?post_id={$record["post_id"]}'>削除</a></div>
@@ -179,6 +185,22 @@ foreach ($result as $record) {
 	context.fill();
 }
 canvas_draw()
+</script>
+<script>
+window.addEventListener('load',function() {
+  const N ='{$record["users_name"]}'
+  const n = stringToNumber(N);
+  const colorAngle = (n*n) % 360;
+  const element = document.getElementById('F_No{$record["post_id"]}'); 
+  element.style.backgroundColor = `hsl(\${colorAngle}, 80%, 64%)`;
+});
+
+var stringToNumber = (str) => {
+  return Array.from(str).map(ch => ch.charCodeAt(0)).reduce((a, b) => a+b);
+};
+
+
+
 </script>
 ";
     }

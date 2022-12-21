@@ -114,7 +114,7 @@ echo ('</pre>');
 $search_result = "";
 foreach ($result as $record) {
   $search_result .= "
-  <fieldset>
+  <fieldset id='F_No{$record["post_id"]}'>
   <legend>{$record["post_user_name"]}</legend>
   <div class='display_post'>
   <div id='output' class='output_No{$record["post_id"]}'>
@@ -185,6 +185,22 @@ foreach ($result as $record) {
 	context.fill();
 }
 canvas_draw()
+</script>
+<script>
+window.addEventListener('load',function() {
+  const N ='{$record["users_name"]}'
+  const n = stringToNumber(N);
+  const colorAngle = (n*n) % 360;
+  const element = document.getElementById('F_No{$record["post_id"]}'); 
+  element.style.backgroundColor = `hsl(\${colorAngle}, 80%, 64%)`;
+});
+
+var stringToNumber = (str) => {
+  return Array.from(str).map(ch => ch.charCodeAt(0)).reduce((a, b) => a+b);
+};
+
+
+
 </script>
 ";
 }
