@@ -5,7 +5,13 @@ echo ('<pre>');
 var_dump($_SESSION);
 echo ('</pre>');
 
+echo ('<pre>');
+var_dump($_POST);
+echo ('</pre>');
+
+$opponent_name= $_POST["opponent_name"];
 $user= $_SESSION["user_name"];
+
 
 include('functions.php');
 
@@ -23,11 +29,11 @@ FROM Like_table
 GROUP BY post_id)
 AS result_table
 ON Post_table.post_id = result_table.add_id
-WHERE post_user_name=:user
+-- WHERE post_user_name=:user
 GROUP BY post_user_name';
 
 $stmt = $pdo->prepare($sql);
-$stmt->bindValue(':user', $user, PDO::PARAM_STR);
+// $stmt->bindValue(':user', $user, PDO::PARAM_STR);
 
 try {
   $status = $stmt->execute();
