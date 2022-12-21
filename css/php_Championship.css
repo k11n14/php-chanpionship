@@ -19,6 +19,25 @@ a {
 	color: red;
 	text-decoration: none;
 }
+
+.display_post{
+	display: flex;
+	justify-content:space-between;
+	align-items: center;
+}
+
+span{
+	 color: #112288;
+}
+
+.like{
+	/* color: red; */
+}
+
+.liked{
+	/* color: #00AAEE; */
+}
+
 /* ID指定 */
 #logout {
 	position: fixed;

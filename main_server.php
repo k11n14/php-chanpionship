@@ -12,6 +12,7 @@ check_session_id();
 // var_dump($_SESSION);
 // echo ('</pre>');
 $user_id = $_SESSION["user_id"];
+$user_name = $_SESSION["user_name"];
 
 $pdo = connect_db();
 
@@ -70,28 +71,6 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // echo ('</pre>');
 
 $output = "";
-
-// if ({$record["post_id"]} =={$record2["post_id"]}) {
-//   echo 'OK';
-// } else {
-//   echo 'NO';
-// };
-
-
-// foreach ($result as $record) {
-//   echo ('BBBB');
-//   echo ($record["post_id"]);
-//   foreach ($my_like as $record2) {
-//     echo ('<br>');
-//     echo $record2["post_id"];
-//     if ($record["post_id"] == $record2["post_id"]) {
-//       $output .= "GGGGG";
-//     }
-//   }
-//   echo ('<br>');
-// }
-
-
 foreach ($result as $record) {
   $output .= "
   <fieldset>
@@ -107,12 +86,16 @@ foreach ($result as $record) {
     }
 }
 if($my_like_cnt <1){
-    $output .= "<div><a href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>確かに☆{$record["like_count"]}</a></div>";
+    $output .= "<div><a class='like' href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>確かに<span>☆</span>{$record["like_count"]}</a></div>";
 } else{
-    $output .= "<div><a href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>確かに★{$record["like_count"]}</a></div>";
+    $output .= "<div><a class='liked' href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>確かに<span>★</span>{$record["like_count"]}</a></div>";
 }
+if($user_name==$record["post_user_name"]){
   $output .= "
   <div><a class='A_delete' href='delete_server.php?post_id={$record["post_id"]}'>削除</a></div>
+  ";
+  }
+  $output .= "
   <div>{$record["post_created_at"]}</div>
   </div>
   </div>
