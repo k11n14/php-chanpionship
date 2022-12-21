@@ -117,6 +117,7 @@ foreach ($result as $record) {
   <div><a class='A_delete' href='delete_server.php?post_id={$record["post_id"]}'>削除</a></div>
   ";
   } else{
+    
     $search_result .= "
   <div><a class='A_follow' href='follow_server.php?post_id={$record["users_id"]}'>フォロー</a></div>
   ";

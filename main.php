@@ -29,8 +29,8 @@ include("main_server.php");
   <div class="sticky">
     <a href="post.php">かきこむ</a>
     <br>
-    <a href="./search.php">検索</a>
-    <br>
+    <!-- <a href="./search.php">検索</a>
+    <br> -->
     <a href="./battle.php">出稼ぎ</a>
   </div>
   <div class="output"><?= $output ?></div>

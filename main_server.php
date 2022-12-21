@@ -15,6 +15,38 @@ check_session_id();
 $user_id = $_SESSION["user_id"];
 $user_name = $_SESSION["user_name"];
 $pdo = connect_db();
+
+$sql = 'SELECT COUNT(*) FROM follow_table WHERE follower=:follower AND followed=:followed';
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':follower', $user_id, PDO::PARAM_STR);
+$stmt->bindValue(':followed', $user_id, PDO::PARAM_STR);
+
+try {
+  $status = $stmt->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+
+$T = $stmt->fetchColumn();
+echo ($T);
+
+
+if($T==0){
+$sql = 'INSERT INTO follow_table (id, follower, followed, delete_flg) 
+VALUES (NULL,:follower,:followed,NULL)';
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':follower', $user_id, PDO::PARAM_STR);
+$stmt->bindValue(':followed', $user_id, PDO::PARAM_STR);
+try {
+  $status = $stmt->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+}
+
+
 $sql = 'SELECT post_id FROM like_table WHERE users_id=:user_login_id';
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':user_login_id', $user_id, PDO::PARAM_STR);
@@ -96,13 +128,7 @@ echo ('</pre>');
 $output = "";
 foreach ($result as $record) {
   foreach ($my_follow as $record3) {
-    echo ('<br>');
-    echo $record3["followed"];
     if($record["users_id"] == $record3["followed"]){
-      
-   
-
-
   $output .= "
   <fieldset>
   <legend>{$record["post_user_name"]}</legend>
