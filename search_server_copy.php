@@ -59,9 +59,15 @@ FROM Like_table
 GROUP BY post_id) 
 AS result_table 
 ON Post_table.post_id = result_table.add_id
-LEFT OUTER JOIN (SELECT users_id,users_name  FROM Users_table) AS TTT
+LEFT OUTER JOIN (
+SELECT users_id,users_name  
+FROM Users_table) 
+AS TTT
 ON Post_table.post_user_name = TTT.users_name
-WHERE post_user_name LIKE :word ||post LIKE :word
+WHERE post_user_name 
+LIKE :word 
+||post 
+LIKE :word
 ORDER BY post_created_at DESC
 ';
 
@@ -112,7 +118,7 @@ foreach ($result as $record) {
   ";
   } else{
     $search_result .= "
-  <div><a class='A_follow' href='follow_server.php?post_id={$record["post_id"]}&page=2'>フォロー</a></div>
+  <div><a class='A_follow' href='follow_server.php?post_id={$record["users_id"]}'>フォロー</a></div>
   ";
   }
 

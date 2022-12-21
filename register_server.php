@@ -14,6 +14,8 @@ $userid = $_POST["register_id"];
 $userpassword = $_POST["register_password"];
 $username = $_POST["register_user_name"];
 
+
+
 include("functions.php");
 $pdo = connect_db();
 
@@ -47,6 +49,8 @@ if ($stmt->fetchColumn() > 0) {
   echo '<script>location.href = "register.php" </script>';
   exit();
 }
+
+
 
 $sql = 'INSERT INTO Users_table
 (users_id, users_login_id, users_login_password, users_name, users_login_at, users_created_at, users_delete)

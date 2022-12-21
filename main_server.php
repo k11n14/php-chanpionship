@@ -11,25 +11,20 @@ check_session_id();
 // echo ('<pre>');
 // var_dump($_SESSION);
 // echo ('</pre>');
+
 $user_id = $_SESSION["user_id"];
 $user_name = $_SESSION["user_name"];
-
 $pdo = connect_db();
-
 $sql = 'SELECT post_id FROM like_table WHERE users_id=:user_login_id';
-
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':user_login_id', $user_id, PDO::PARAM_STR);
-
 try {
   $status = $stmt->execute();
 } catch (PDOException $e) {
   echo json_encode(["sql error" => "{$e->getMessage()}"]);
   exit();
 }
-
 $my_like = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 // echo ('<pre>');
 // var_dump($my_like);
 // echo ('</pre>');
@@ -38,6 +33,27 @@ $my_like = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //   echo ('<br>');
 //   echo $record2["post_id"];
 // }
+
+$sql= 'SELECT * FROM follow_table WHERE follower=:follower';
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':follower', $user_id, PDO::PARAM_STR);
+try {
+  $status = $stmt->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+$my_follow = $stmt->fetchAll(PDO::FETCH_ASSOC);
+echo ('<pre>');
+var_dump($my_follow);
+echo ('</pre>');
+
+foreach ($my_follow as $record3) {
+  echo ('<br>');
+  echo $record3["followed"];
+}
+
+
 
 
 $sql = 'SELECT * 
@@ -51,13 +67,18 @@ FROM Like_table
 GROUP BY post_id) 
 AS result_table 
 ON Post_table.post_id = result_table.add_id
-WHERE post_user_name=:username||post_user_name="薬瓶砕き"
+LEFT OUTER JOIN (
+SELECT users_id,users_name  
+FROM Users_table) 
+AS TTT
+ON Post_table.post_user_name = TTT.users_name
+
 ORDER BY post_created_at DESC
 ';
 
 
 $stmt = $pdo->prepare($sql);
-$stmt->bindValue(':username', $user_name, PDO::PARAM_STR);
+// $stmt->bindValue(':username', $user_name, PDO::PARAM_STR);
 
 try {
   $status = $stmt->execute();
@@ -68,12 +89,20 @@ try {
 
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// echo ('<pre>');
-// var_dump($result);
-// echo ('</pre>');
+echo ('<pre>');
+var_dump($result);
+echo ('</pre>');
 
 $output = "";
 foreach ($result as $record) {
+  foreach ($my_follow as $record3) {
+    echo ('<br>');
+    echo $record3["followed"];
+    if($record["users_id"] == $record3["followed"]){
+      
+   
+
+
   $output .= "
   <fieldset>
   <legend>{$record["post_user_name"]}</legend>
@@ -125,7 +154,8 @@ canvas_draw()
 </script>
 ";
 }
-
+  }
+}
 // echo ('<pre>');
 // var_dump($output);
 // echo ('</pre>');
