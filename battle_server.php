@@ -29,11 +29,11 @@ FROM Like_table
 GROUP BY post_id)
 AS result_table
 ON Post_table.post_id = result_table.add_id
--- WHERE post_user_name=:user
+WHERE post_user_name=:user
 GROUP BY post_user_name';
 
 $stmt = $pdo->prepare($sql);
-// $stmt->bindValue(':user', $user, PDO::PARAM_STR);
+$stmt->bindValue(':user', $user, PDO::PARAM_STR);
 
 try {
   $status = $stmt->execute();
@@ -52,4 +52,65 @@ echo ('<pre>');
 echo ($result[0]["like_count_sum"]);
 echo ('</pre>');
 
+$sql = 'SELECT post_user_name,
+SUM(like_count) AS like_count_sum
+FROM Post_table
+LEFT OUTER JOIN (
+SELECT post_id
+AS add_id,
+COUNT(post_id)
+AS like_count
+FROM Like_table
+GROUP BY post_id)
+AS result_table
+ON Post_table.post_id = result_table.add_id
+WHERE post_user_name=:opponent
+GROUP BY post_user_name';
+
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':opponent', $opponent_name, PDO::PARAM_STR);
+
+try {
+  $status = $stmt->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+
+$result2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+echo ('<pre>');
+var_dump($result2);
+echo ('</pre>');
+
+echo ('<pre>');
+echo ($result2[0]["like_count_sum"]);
+echo ('</pre>');
+
+if($result[0]["like_count_sum"]>$result2[0]["like_count_sum"]){
+echo '勝ち';
+} 
+else if ($result[0]["like_count_sum"] == $result2[0]["like_count_sum"]){
+  echo '引き分け';
+} 
+else{
+  echo '負け';
+  $sql= 'DELETE provisional_table
+  FROM like_table 
+  AS provisional_table
+  LEFT OUTER JOIN post_table
+  ON  provisional_table.post_id =Post_table.post_id
+  WHERE post_user_name=:user
+  ';
+  $stmt = $pdo->prepare($sql);
+  $stmt->bindValue(':user', $user, PDO::PARAM_STR);
+}
+try {
+  $status = $stmt->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  echo ('222');
+  exit();
+}
+  
 ?>

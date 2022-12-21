@@ -1,6 +1,7 @@
 <?php
 include("main_server.php");
 ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -29,7 +30,7 @@ include("main_server.php");
   <script src="./JS/main_php.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script>
+  <!-- <script>
     function hoge() {
       処理
       setTimeout(function() {
@@ -37,7 +38,7 @@ include("main_server.php");
       }, 1000);
     }
     hoge();
-    </script>
+    </script> -->
   <script>
     $("#search").on("keyup", function(e) {
       

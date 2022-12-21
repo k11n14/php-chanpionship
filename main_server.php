@@ -2,9 +2,9 @@
 include("functions.php");
 
 session_start();
-// echo('<pre>');
-// var_dump ($_SESSION);
-// echo('</pre>');
+echo('<pre>');
+var_dump ($_SESSION);
+echo('</pre>');
 
 check_session_id();
 
@@ -52,8 +52,6 @@ $stmt = $pdo->prepare($sql);
 
 try {
   $status = $stmt->execute();
-  echo 'SQLok';
-  echo '<br>';
 } catch (PDOException $e) {
   echo json_encode(["sql error" => "{$e->getMessage()}"]);
   exit();
