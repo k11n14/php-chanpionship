@@ -133,4 +133,14 @@ foreach ($result as $record) {
     }
   }
 }
+
+     let todos = [];
+            response.data.forEach(todo => {
+              todos.push(`
+            <fieldset>
+            <div>${todo.post_user_name}</div>
+            <div>${todo.post}<div>
+            </fieldset>
+            `)
+            });
 ?>

@@ -1,5 +1,5 @@
 .Test {
-	color: blue;
+	color: whitesmoke;
 	background-color: red;
 }
 /* CLASS指定 */
@@ -10,11 +10,22 @@
 	flex-direction: column;
 }
 
+a {
+	color: black;
+	text-decoration: none;
+}
+
 .A_delete {
-	color: aqua;
+	color: red;
 	text-decoration: none;
 }
 /* ID指定 */
+#logout {
+	position: fixed;
+	top: 10px;
+	right: 10px;
+	padding: 6px 40px;
+}
 
 .sticky {
 	/* color: red;
@@ -23,4 +34,10 @@
 	bottom: 10px;
 	right: 10px;
 	padding: 6px 40px;
+}
+
+fieldset {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }

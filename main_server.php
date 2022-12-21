@@ -33,10 +33,10 @@ $my_like = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // var_dump($my_like);
 // echo ('</pre>');
 
-foreach ($my_like as $record2) {
-  echo ('<br>');
-  echo $record2["post_id"];
-}
+// foreach ($my_like as $record2) {
+//   echo ('<br>');
+//   echo $record2["post_id"];
+// }
 
 
 $sql = 'SELECT * 
@@ -107,12 +107,11 @@ foreach ($result as $record) {
     }
 }
 if($my_like_cnt <1){
-    $output .= "<div><a href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>Good☆</a></div>";
+    $output .= "<div><a href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>確かに☆{$record["like_count"]}</a></div>";
 } else{
-    $output .= "<div><a href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>Good★</a></div>";
+    $output .= "<div><a href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>確かに★{$record["like_count"]}</a></div>";
 }
   $output .= "
-  <div id='Like_count_No{$record["post_id"]}' class='like_count'>{$record["like_count"]}</div>
   <div><a class='A_delete' href='delete_server.php?post_id={$record["post_id"]}'>削除</a></div>
   <div>{$record["post_created_at"]}</div>
   </div>
