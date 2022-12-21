@@ -10,17 +10,17 @@
 	flex-direction: column;
 }
 
-a{
-  color:red;
-  text-decoration: none;
+.A_delete {
+	color: aqua;
+	text-decoration: none;
 }
 /* ID指定 */
 
 .sticky {
 	/* color: red;
 	background-color: blue; */
-  position: fixed;
-  bottom: 10px; 
-  right: 10px;
-  padding: 6px 40px;
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+	padding: 6px 40px;
 }

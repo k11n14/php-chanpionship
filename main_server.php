@@ -99,17 +99,21 @@ foreach ($result as $record) {
   <div class='display_post'>
   <div id='output' class='output_No{$record["post_id"]}'>
   <div>{$record["post"]}</div>
-  <div><a href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>Good</a></div>
   ";
+  $my_like_cnt = 0;
   foreach ($my_like as $record2) {
     if ($record["post_id"] == $record2["post_id"]) {
-      $output .= "<div>いいね済</div>";
+      $my_like_cnt = 1;
     }
 }
-  
+if($my_like_cnt <1){
+    $output .= "<div><a href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>Good☆</a></div>";
+} else{
+    $output .= "<div><a href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>Good★</a></div>";
+}
   $output .= "
   <div id='Like_count_No{$record["post_id"]}' class='like_count'>{$record["like_count"]}</div>
-  <div><a href='delete_server.php?post_id={$record["post_id"]}'>削除</a></div>
+  <div><a class='A_delete' href='delete_server.php?post_id={$record["post_id"]}'>削除</a></div>
   <div>{$record["post_created_at"]}</div>
   </div>
   </div>
