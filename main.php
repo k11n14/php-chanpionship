@@ -19,12 +19,19 @@ include("main_server.php");
   </div>
   <div id="todo"></div>
   <div id="Test" class="test">ようこそ　<?= $_SESSION["user_name"] ?>　さん</div>
+  <form class="search_form" action="search_server_copy.php" method="post">
+    <div>
+      <input type="text" name="search_word">
+      <input type="submit" value="送信">
+    </div>
+  </form>
   <div id="logout"><a href="logout_server.php">ログアウト</a></div>
   <div class="sticky">
     <a href="post.php">かきこむ</a>
     <br>
-    <a href="./battle.php">出稼ぎ</a>
+    <a href="./search.php">検索</a>
     <br>
+    <a href="./battle.php">出稼ぎ</a>
   </div>
   <div class="output"><?= $output ?></div>
 

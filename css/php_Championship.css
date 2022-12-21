@@ -3,7 +3,15 @@
 	background-color: red;
 }
 /* CLASS指定 */
-.output {
+.output,.search_result,.search_form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.search_form {
+	margin-top: 1em;
 	display: flex;
 	justify-content: center;
 	align-items: center;

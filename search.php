@@ -9,9 +9,6 @@
 </head>
 
 <body>
-  <form action="search_server.php" method="post">
-    <input type="text" name="search_word">
-    <input type="submit" value="送信">
-  </form>
-  <div class="search_result"><?= $search_result ?></div>
+  
+  <!-- <div class="search_result"><?= $search_result ?></div> -->
 </body>
