@@ -48,6 +48,29 @@ $my_like = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // }
 
 
+$sql = 'SELECT * FROM follow_table WHERE follower=:follower';
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':follower', $user_id, PDO::PARAM_STR);
+try {
+  $status = $stmt->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+$my_follow = $stmt->fetchAll(PDO::FETCH_ASSOC);
+echo ('<pre>');
+var_dump($my_follow);
+echo ('</pre>');
+
+foreach ($my_follow as $record3) {
+  echo ('<br>');
+  echo $record3["followed"];
+}
+
+
+
+
+
 $sql = 'SELECT * 
 FROM Post_table 
 LEFT OUTER JOIN ( 
@@ -106,22 +129,34 @@ foreach ($result as $record) {
       $my_like_cnt = 1;
     }
   }
-  if ($my_like_cnt < 1) {
-    $search_result .= "<div><a class='like' href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>確かに<span>☆</span>{$record["like_count"]}</a></div>";
-  } else {
-    $search_result .= "<div><a class='liked' href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>確かに<span>★</span>{$record["like_count"]}</a></div>";
+  if ($user_id !== $record["users_id"]) {
+    if ($my_like_cnt < 1) {
+      $search_result .= "<div><a class='like' href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>確かに<span>☆</span>{$record["like_count"]}</a></div>";
+    } else {
+      $search_result .= "<div><a class='liked' href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>確かに<span>★</span>{$record["like_count"]}</a></div>";
+    }
   }
-
   if ($user_name == $record["post_user_name"]) {
     $search_result .= "
   <div><a class='A_delete' href='delete_server.php?post_id={$record["post_id"]}'>削除</a></div>
   ";
-  } else{
-    
+  } else {
+    foreach ($my_follow as $record3) {
+      
+      if ($record["users_id"] == $record3["followed"]) {
     $search_result .= "
+  <div><a class='A_follow' href='follow_server.php?post_id={$record["users_id"]}'>フォロー解除</a></div>
+  ";
+
+    }else{
+        $search_result .= "
   <div><a class='A_follow' href='follow_server.php?post_id={$record["users_id"]}'>フォロー</a></div>
   ";
+
+    }
+
   }
+}
 
   $search_result .= "
   <div>{$record["post_created_at"]}</div>

@@ -2,9 +2,9 @@
 include("functions.php");
 
 session_start();
-echo('<pre>');
-var_dump ($_SESSION);
-echo('</pre>');
+echo ('<pre>');
+var_dump($_SESSION);
+echo ('</pre>');
 
 check_session_id();
 
@@ -32,18 +32,18 @@ $T = $stmt->fetchColumn();
 echo ($T);
 
 
-if($T==0){
-$sql = 'INSERT INTO follow_table (id, follower, followed, delete_flg) 
+if ($T == 0) {
+  $sql = 'INSERT INTO follow_table (id, follower, followed, delete_flg) 
 VALUES (NULL,:follower,:followed,NULL)';
-$stmt = $pdo->prepare($sql);
-$stmt->bindValue(':follower', $user_id, PDO::PARAM_STR);
-$stmt->bindValue(':followed', $user_id, PDO::PARAM_STR);
-try {
-  $status = $stmt->execute();
-} catch (PDOException $e) {
-  echo json_encode(["sql error" => "{$e->getMessage()}"]);
-  exit();
-}
+  $stmt = $pdo->prepare($sql);
+  $stmt->bindValue(':follower', $user_id, PDO::PARAM_STR);
+  $stmt->bindValue(':followed', $user_id, PDO::PARAM_STR);
+  try {
+    $status = $stmt->execute();
+  } catch (PDOException $e) {
+    echo json_encode(["sql error" => "{$e->getMessage()}"]);
+    exit();
+  }
 }
 
 
@@ -66,7 +66,7 @@ $my_like = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //   echo $record2["post_id"];
 // }
 
-$sql= 'SELECT * FROM follow_table WHERE follower=:follower';
+$sql = 'SELECT * FROM follow_table WHERE follower=:follower';
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':follower', $user_id, PDO::PARAM_STR);
 try {
@@ -128,31 +128,33 @@ echo ('</pre>');
 $output = "";
 foreach ($result as $record) {
   foreach ($my_follow as $record3) {
-    if($record["users_id"] == $record3["followed"]){
-  $output .= "
+    if ($record["users_id"] == $record3["followed"]) {
+      $output .= "
   <fieldset>
   <legend>{$record["post_user_name"]}</legend>
   <div class='display_post'>
   <div id='output' class='output_No{$record["post_id"]}'>
   <div>{$record["post"]}</div>
   ";
-  $my_like_cnt = 0;
-  foreach ($my_like as $record2) {
-    if ($record["post_id"] == $record2["post_id"]) {
-      $my_like_cnt = 1;
-    }
-}
-if($my_like_cnt <1){
-    $output .= "<div><a class='like' href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>確かに<span>☆</span>{$record["like_count"]}</a></div>";
-} else{
-    $output .= "<div><a class='liked' href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>確かに<span>★</span>{$record["like_count"]}</a></div>";
-}
-if($user_name==$record["post_user_name"]){
-  $output .= "
+      $my_like_cnt = 0;
+      foreach ($my_like as $record2) {
+        if ($record["post_id"] == $record2["post_id"]) {
+          $my_like_cnt = 1;
+        }
+      }
+      if ($user_id !== $record["users_id"]) {
+        if ($my_like_cnt < 1) {
+          $output .= "<div><a class='like' href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>確かに<span>☆</span>{$record["like_count"]}</a></div>";
+        } else {
+          $output .= "<div><a class='liked' href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>確かに<span>★</span>{$record["like_count"]}</a></div>";
+        }
+      }
+      if ($user_name == $record["post_user_name"]) {
+        $output .= "
   <div><a class='A_delete' href='delete_server.php?post_id={$record["post_id"]}'>削除</a></div>
   ";
-  }
-  $output .= "
+      }
+      $output .= "
   <div>{$record["post_created_at"]}</div>
   </div>
   </div>
@@ -179,16 +181,9 @@ if($user_name==$record["post_user_name"]){
 canvas_draw()
 </script>
 ";
-}
+    }
   }
 }
 // echo ('<pre>');
 // var_dump($output);
 // echo ('</pre>');
-?>
-
-
-
-
-
-

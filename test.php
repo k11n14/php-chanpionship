@@ -143,4 +143,39 @@ foreach ($result as $record) {
             </fieldset>
             `)
             });
+
+
+
+
+
+
+
+
+
+
+            else {
+
+
+    foreach ($my_follow as $record3) {
+
+      if ($record["users_id"] == $record3["followed"]) {
+    $search_result .= "
+  <div><a class='A_follow' href='follow_server.php?post_id={$record["users_id"]}'>フォロー解除</a></div>
+  ";
+  } else{
+        $search_result .= "
+    <div><a class='A_follow' href='follow_server.php?post_id={$record["users_id"]}'>フォロー</a></div>
+    ";
+  }
+
+
+
+
+}
+
+
+
+
+
+}
 ?>
