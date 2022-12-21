@@ -8,7 +8,7 @@ $pdo = connect_db();
 $search_word = $_GET["searchword"];
 // echo ($search_word);
 
-$sql = "SELECT * FROM Post_table  WHERE post LIKE :search_word";
+$sql = "SELECT * FROM users_table  WHERE users_name LIKE :search_word";
 
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':search_word', "%{$search_word}%", PDO::PARAM_STR);

@@ -51,11 +51,13 @@ FROM Like_table
 GROUP BY post_id) 
 AS result_table 
 ON Post_table.post_id = result_table.add_id
+WHERE post_user_name=:username||post_user_name="薬瓶砕き"
 ORDER BY post_created_at DESC
 ';
 
 
 $stmt = $pdo->prepare($sql);
+$stmt->bindValue(':username', $user_name, PDO::PARAM_STR);
 
 try {
   $status = $stmt->execute();

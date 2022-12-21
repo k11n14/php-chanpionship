@@ -49,24 +49,24 @@ include("main_server.php");
             console.log(response);
             console.log(response.data);
             console.log(response.data[0]);
-            console.log(response.data[0].post);
-            console.log(response.data[0].post_user_name);
 
 
 
 
-            let todos = [];
-            response.data.forEach(todo => {
-              todos.push(`
-            <fieldset>
-            <div>${todo.post_user_name}</div>
-            <div>${todo.post}<div>
-            </fieldset>
-            `)
-            });
+            // console.log(response.data[0].post);
+            // console.log(response.data[0].post_user_name);
+            // let todos = [];
+            // response.data.forEach(todo => {
+            //   todos.push(`
+            // <fieldset>
+            // <div>${todo.post_user_name}</div>
+            // <div>${todo.post}<div>
+            // </fieldset>
+            // `)
+            // });
 
-            console.log(todos)
-            $('#todo').html(todos)
+            // console.log(todos)
+            // $('#todo').html(todos)
 
 
           })
