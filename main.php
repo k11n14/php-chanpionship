@@ -22,7 +22,7 @@ include("main_server.php");
   <form class="search_form" action="search_server_copy.php" method="post">
     <div>
       <input type="text" name="search_word">
-      <input type="submit" value="送信">
+      <input type="submit" value="検索">
     </div>
   </form>
   <div id="logout"><a href="logout_server.php">ログアウト</a></div>

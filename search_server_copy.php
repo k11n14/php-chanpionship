@@ -141,22 +141,24 @@ foreach ($result as $record) {
   <div><a class='A_delete' href='delete_server.php?post_id={$record["post_id"]}'>削除</a></div>
   ";
   } else {
+    $my_f_cnt = 0;
     foreach ($my_follow as $record3) {
-      
       if ($record["users_id"] == $record3["followed"]) {
-    $search_result .= "
-  <div><a class='A_follow' href='follow_server.php?post_id={$record["users_id"]}'>フォロー解除</a></div>
-  ";
-
-    }else{
+        $my_f_cnt = 1;
+      }
+    }
+    if ($user_id !== $record["users_id"]) {
+      if ($my_f_cnt < 1) {
         $search_result .= "
   <div><a class='A_follow' href='follow_server.php?post_id={$record["users_id"]}'>フォロー</a></div>
   ";
-
+      } else {
+        $search_result .= "
+  <div><a class='A_follow' href='follow_server.php?post_id={$record["users_id"]}'>フォロー解除</a></div>
+  ";
+      }
     }
-
   }
-}
 
   $search_result .= "
   <div>{$record["post_created_at"]}</div>
