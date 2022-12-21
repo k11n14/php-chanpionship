@@ -15,24 +15,30 @@ $user_id = $_SESSION["user_id"];
 
 $pdo = connect_db();
 
-$output = "";
+$sql = 'SELECT post_id FROM like_table WHERE users_id=:user_login_id';
 
-// $sql = 'SELECT * 
-// FROM Post_table 
-// ORDER BY post_created_at DESC';
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':user_login_id', $user_id, PDO::PARAM_STR);
 
-// $sql = 'SELECT * 
-// FROM Post_table 
-// LEFT OUTER JOIN (
-// SELECT post_id as add_id, 
-// COUNT(post_id) 
-// AS like_count 
-// FROM Like_table 
-// GROUP BY post_id) 
-// AS result_table 
-// ON Post_table.post_id = result_table.post_id';
+try {
+  $status = $stmt->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
 
-// 
+$my_like = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// echo ('<pre>');
+// var_dump($my_like);
+// echo ('</pre>');
+
+foreach ($my_like as $record2) {
+  echo ('<br>');
+  echo $record2["post_id"];
+}
+
+
 $sql = 'SELECT * 
 FROM Post_table 
 LEFT OUTER JOIN ( 
@@ -63,7 +69,35 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // var_dump($result);
 // echo ('</pre>');
 
+$output = "";
+
+// if ({$record["post_id"]} =={$record2["post_id"]}) {
+//   echo 'OK';
+// } else {
+//   echo 'NO';
+// };
+
+
+// foreach ($result as $record) {
+//   echo ('BBBB');
+//   echo ($record["post_id"]);
+//   foreach ($my_like as $record2) {
+//     echo ('<br>');
+//     echo $record2["post_id"];
+//     if ($record["post_id"] == $record2["post_id"]) {
+//       $output .= "GGGGG";
+//     }
+//   }
+//   echo ('<br>');
+// }
+
+
 foreach ($result as $record) {
+  foreach ($my_like as $record2) {
+    if ($record["post_id"] == $record2["post_id"]) {
+      $output .= "<div>いいね済み</div>";
+    }
+  }
   $output .= "
   <fieldset>
   <legend>{$record["post_user_name"]}</legend>
@@ -100,6 +134,8 @@ canvas_draw()
 </script>
 ";
 }
+
+
 
 // echo ('<pre>');
 // var_dump($output);
