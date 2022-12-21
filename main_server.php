@@ -93,11 +93,6 @@ $output = "";
 
 
 foreach ($result as $record) {
-  foreach ($my_like as $record2) {
-    if ($record["post_id"] == $record2["post_id"]) {
-      $output .= "<div>いいね済み</div>";
-    }
-  }
   $output .= "
   <fieldset>
   <legend>{$record["post_user_name"]}</legend>
@@ -105,6 +100,14 @@ foreach ($result as $record) {
   <div id='output' class='output_No{$record["post_id"]}'>
   <div>{$record["post"]}</div>
   <div><a href='like_server.php?user_id={$user_id}&post_id={$record["post_id"]}'>Good</a></div>
+  ";
+  foreach ($my_like as $record2) {
+    if ($record["post_id"] == $record2["post_id"]) {
+      $output .= "<div>いいね済</div>";
+    }
+}
+  
+  $output .= "
   <div id='Like_count_No{$record["post_id"]}' class='like_count'>{$record["like_count"]}</div>
   <div><a href='delete_server.php?post_id={$record["post_id"]}'>削除</a></div>
   <div>{$record["post_created_at"]}</div>
