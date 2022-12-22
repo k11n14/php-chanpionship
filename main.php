@@ -31,6 +31,7 @@ include("main_server.php");
   </div>
   <div id="todo"></div>
   <div id="Test" class="test">ようこそ <?= $_SESSION["user_name"] ?> さん</div>
+ 
   <form class="search_form" action="search_server_copy.php" method="post">
     <div>
       <input type="text" name="search_word">
@@ -51,7 +52,7 @@ include("main_server.php");
     <br>
     <form action="battle_server.php" method="POST">
       <div>
-        指名: <input type="text" id="Opponent_name" name="opponent_name">
+        バトル<input type="text" id="Opponent_name" name="opponent_name">
       </div>
     </form>
   </div>

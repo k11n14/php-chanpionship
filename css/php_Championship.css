@@ -1,7 +1,4 @@
-#Test {
-	color: whitesmoke;
-	background-color: red;
-}
+
 /* CLASS指定 */
 .output,.search_result,.search_form {
 	display: flex;

@@ -45,7 +45,7 @@ $val = $stmt->fetch(PDO::FETCH_ASSOC);
 if (!$val) {
   $alert = "<script>alert('ログインに失敗しました。')</script>";
   echo $alert;
-  echo '<script>location.href = "login.php" </script>';
+  echo '<script>location.href = "memo.php" </script>';
   exit();
 } else {
   $_SESSION = array();

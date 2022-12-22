@@ -117,7 +117,7 @@
 		
 		<div class="login-page">
 			<div class="form">
-				<form class="register-form" action="../register_server.php" method="POST">
+				<form class="register-form" action="register_server.php" method="POST">
 					<input type="text" placeholder="User Id" name="register_id"/>
 					<input type="password" placeholder="Pass Word" name="register_password"/>
 					<input type="text" placeholder="User Name" name="register_user_name"/>
@@ -125,8 +125,8 @@
 					<p class="message">Already registered? <a href="#">Sign In</a></p>
 				</form>
 
-				<form class="login-form" action="../login_server.php" method="POST">
-					<h1>とるったー</h1>
+				<form class="login-form" action="login_server.php" method="POST">
+					<h1>とるったー（仮）</h1>
 					<input type="text" placeholder="User Id" name="login_id"/>
 					<input type="password" placeholder="Pass Word" name="login_password"/>
 					<button>login</button>

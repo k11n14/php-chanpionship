@@ -46,7 +46,7 @@ try {
 if ($stmt->fetchColumn() > 0) {
   $alert = "<script>alert('既に登録されています。')</script>";
   echo $alert;
-  echo '<script>location.href = "register.php" </script>';
+  echo '<script>location.href = "./memo.php" </script>';
   exit();
 }
 
@@ -69,5 +69,5 @@ try {
   exit();
 }
 
-header("Location:login.php");
+header("Location:memo.php");
 exit();

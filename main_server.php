@@ -104,7 +104,6 @@ SELECT users_id,users_name
 FROM Users_table) 
 AS TTT
 ON Post_table.post_user_name = TTT.users_name
-
 ORDER BY post_created_at DESC
 ';
 
