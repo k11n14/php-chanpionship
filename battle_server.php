@@ -1,3 +1,15 @@
+<style>
+  element.style {}
+
+  body {
+    background: #76b852;
+    background: rgb(141, 194, 111);
+    background: linear-gradient(90deg, rgba(141, 194, 111, 1) 0%, rgba(118, 184, 82, 1) 50%);
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+</style>
 <?php
 session_start();
 
@@ -9,8 +21,8 @@ echo ('<pre>');
 var_dump($_POST);
 echo ('</pre>');
 
-$opponent_name= $_POST["opponent_name"];
-$user= $_SESSION["user_name"];
+$opponent_name = $_POST["opponent_name"];
+$user = $_SESSION["user_name"];
 
 
 include('functions.php');
@@ -87,15 +99,19 @@ echo ('<pre>');
 echo ($result2[0]["like_count_sum"]);
 echo ('</pre>');
 
-if($result[0]["like_count_sum"]>$result2[0]["like_count_sum"]){
-echo '勝ち';
-} 
-else if ($result[0]["like_count_sum"] == $result2[0]["like_count_sum"]){
-  echo '引き分け';
-} 
-else{
-  echo '負け';
-  $sql= 'DELETE provisional_table
+if ($result[0]["like_count_sum"] > $result2[0]["like_count_sum"]) {
+  $alert1 = "<script type='text/javascript'>alert('勝ち')</script>";
+  echo $alert1;
+  echo '<script>location.href = "main.php" </script>';
+} else if ($result[0]["like_count_sum"] == $result2[0]["like_count_sum"]) {
+
+  $alert2 = "<script type='text/javascript'>alert('引き分け');</script>";
+  echo $alert2;
+  echo '<script>location.href = "main.php" </script>';
+} else {
+  $alert3 = "<script type='text/javascript'>alert('負け')</script>";
+  echo $alert3;
+  $sql = 'DELETE provisional_table
   FROM like_table 
   AS provisional_table
   LEFT OUTER JOIN post_table
@@ -104,13 +120,28 @@ else{
   ';
   $stmt = $pdo->prepare($sql);
   $stmt->bindValue(':user', $user, PDO::PARAM_STR);
+  try {
+    $status = $stmt->execute();
+  } catch (PDOException $e) {
+    echo json_encode(["sql error" => "{$e->getMessage()}"]);
+    echo ('222');
+    exit();
+  }
+  echo '<script>location.href = "main.php" </script>';
 }
-try {
-  $status = $stmt->execute();
-} catch (PDOException $e) {
-  echo json_encode(["sql error" => "{$e->getMessage()}"]);
-  echo ('222');
-  exit();
-}
-  
 ?>
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>

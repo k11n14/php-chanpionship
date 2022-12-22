@@ -10,12 +10,9 @@
 
 <body>
   <form action="battle_server.php" method="POST">
-    <fieldset>
-      <legend>対戦相手を指名</legend>
       <div>
-        <input type="text" id="Opponent_name" name="opponent_name">
+        指名<input type="text" id="Opponent_name" name="opponent_name">
       </div>
-    </fieldset>
   </form>
 </body>
 

@@ -1,4 +1,4 @@
-.Test {
+#Test {
 	color: whitesmoke;
 	background-color: red;
 }
@@ -49,8 +49,8 @@ span{
 /* ID指定 */
 #logout {
 	position: fixed;
-	top: 10px;
-	right: 10px;
+	top: 25px;
+	right: 1px;
 	padding: 6px 40px;
 }
 

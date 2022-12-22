@@ -24,14 +24,7 @@ echo ('</pre>');
 </head>
 
 <body>
-  <form action="post_server.php" method="POST">
-    <fieldset>
-      <legend>投稿</legend>
-      <div>
-        一言: <input type="text" id="post" name="Post">
-      </div>
-    </fieldset>
-  </form>
+  
   <script>
     document.getElementById('post').focus();
   </script>

@@ -1,14 +1,14 @@
 <?php
 include("functions.php");
 
-echo ('<pre>');
-var_dump($_POST);
-echo ('</pre>');
+// echo ('<pre>');
+// var_dump($_POST);
+// echo ('</pre>');
 
 session_start();
-echo ('<pre>');
-var_dump($_SESSION);
-echo ('</pre>');
+// echo ('<pre>');
+// var_dump($_SESSION);
+// echo ('</pre>');
 
 check_session_id();
 
@@ -58,14 +58,14 @@ try {
   exit();
 }
 $my_follow = $stmt->fetchAll(PDO::FETCH_ASSOC);
-echo ('<pre>');
-var_dump($my_follow);
-echo ('</pre>');
+// echo ('<pre>');
+// var_dump($my_follow);
+// echo ('</pre>');
 
-foreach ($my_follow as $record3) {
-  echo ('<br>');
-  echo $record3["followed"];
-}
+// foreach ($my_follow as $record3) {
+//   echo ('<br>');
+//   echo $record3["followed"];
+// }
 
 
 
@@ -107,9 +107,9 @@ try {
 
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-echo ('<pre>');
-var_dump($result);
-echo ('</pre>');
+// echo ('<pre>');
+// var_dump($result);
+// echo ('</pre>');
 
 $search_result = "";
 foreach ($result as $record) {
@@ -222,6 +222,18 @@ var stringToNumber = (str) => {
 </head>
 
 <body>
+  <style>
+    element.style {}
+
+    body {
+      background: #76b852;
+      background: rgb(141, 194, 111);
+      background: linear-gradient(90deg, rgba(141, 194, 111, 1) 0%, rgba(118, 184, 82, 1) 50%);
+      font-family: "Roboto", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  </style>
   <div class="sticky">
     <a href="main.php">戻る</a>
   </div>

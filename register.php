@@ -8,6 +8,7 @@
 </head>
 
 <body>
+  
   <form action="register_server.php" method="POST">
     <fieldset>
       <legend>ユーザ登録</legend>

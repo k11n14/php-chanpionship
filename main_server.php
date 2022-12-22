@@ -2,9 +2,9 @@
 include("functions.php");
 
 session_start();
-echo ('<pre>');
-var_dump($_SESSION);
-echo ('</pre>');
+// echo ('<pre>');
+// var_dump($_SESSION);
+// echo ('</pre>');
 
 check_session_id();
 
@@ -29,7 +29,7 @@ try {
 }
 
 $T = $stmt->fetchColumn();
-echo ($T);
+// echo ($T);
 
 
 if ($T == 0) {
@@ -76,14 +76,14 @@ try {
   exit();
 }
 $my_follow = $stmt->fetchAll(PDO::FETCH_ASSOC);
-echo ('<pre>');
-var_dump($my_follow);
-echo ('</pre>');
+// echo ('<pre>');
+// var_dump($my_follow);
+// echo ('</pre>');
 
-foreach ($my_follow as $record3) {
-  echo ('<br>');
-  echo $record3["followed"];
-}
+// foreach ($my_follow as $record3) {
+//   echo ('<br>');
+//   echo $record3["followed"];
+// }
 
 
 
@@ -121,9 +121,9 @@ try {
 
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-echo ('<pre>');
-var_dump($result);
-echo ('</pre>');
+// echo ('<pre>');
+// var_dump($result);
+// echo ('</pre>');
 
 $output = "";
 foreach ($result as $record) {
@@ -176,7 +176,7 @@ foreach ($result as $record) {
 	context.arc(
 	canvas.width / 2,
 	canvas.height / 2,
-  {$record["like_count"]},
+  {$record["like_count"]}*2,
 	(0 * Math.PI) / 180,
   (360 * Math.PI) / 180,
 	false
